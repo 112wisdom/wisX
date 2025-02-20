@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WisdomX Global News and Sport</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>WisdomX Global News and Sport</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#latest-news">Latest News</a></li>
+                <li><a href="#ads">Product Ads</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="support.html">Support Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to WisdomX Global News and Sport</h2>
+        <p>Stay updated with the latest news from the world of sports and beyond. Explore different categories and read the latest articles.</p>
+        <div class="ad">
+            <!-- Ad placeholder -->
+            <p>Ad: Your ad here</p>
+        </div>
+    </section>
+
+    <section id="categories">
+        <h2>Categories</h2>
+        <ul>
+            <li><a href="#football">Football</a></li>
+            <li><a href="#basketball">Basketball</a></li>
+            <li><a href="#tennis">Tennis</a></li>
+            <li><a href="#cricket">Cricket</a></li>
+            <li><a href="#celebrities">Celebrities</a></li>
+            <li><a href="#science-tech">Science & Technology</a></li>
+            <li><a href="#war">War</a></li>
+            <li><a href="#economics">Economics</a></li>
+            <li><a href="#health">Health</a></li>
+            <li><a href="#entertainment">Entertainment</a></li>
+            <li><a href="#politics">Politics</a></li>
+        </ul>
+    </section>
+
+    <section id="latest-news">
+        <h2>Latest News</h2>
+        <div id="latestNewsContent">
+            <!-- Latest news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="celebrities">
+        <h2>Celebrities</h2>
+        <div id="celebritiesNewsContent">
+            <!-- Celebrities news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="science-tech">
+        <h2>Science & Technology</h2>
+        <div id="scienceTechNewsContent">
+            <!-- Science & Technology news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="war">
+        <h2>War</h2>
+        <div id="warNewsContent">
+            <!-- War news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="economics">
+        <h2>Economics</h2>
+        <div id="economicsNewsContent">
+            <!-- Economics news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="health">
+        <h2>Health</h2>
+        <div id="healthNewsContent">
+            <!-- Health news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="entertainment">
+        <h2>Entertainment</h2>
+        <div id="entertainmentNewsContent">
+            <!-- Entertainment news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="politics">
+        <h2>Politics</h2>
+        <div id="politicsNewsContent">
+            <!-- Politics news will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <section id="ads">
+        <h2>Product Ads</h2>
+        <div class="product-ad">
+            <h3>Product 1</h3>
+            <p>Amazing product that will change your life! <a href="https://example.com/product1" target="_blank">Buy now</a></p>
+        </div>
+        <div class="product-ad">
+            <h3>Product 2</h3>
+            <p>Top-rated product for all your needs. <a href="https://example.com/product2" target="_blank">Check it out</a></p>
+        </div>
+        <div class="product-ad">
+            <h3>Product 3</h3>
+            <p>Get the best deals on this incredible product. <a href="https://example.com/product3" target="_blank">Shop now</a></p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Support</h2>
+        <p>For any inquiries or support, please contact us through the following channels:</p>
+        <ul>
+            <li>Telegram: <a href="https://t.me/shanti12c" target="_blank">t.me/shanti12c</a></li>
+            <li>WhatsApp: <a href="https://wa.me/2348026029402" target="_blank">+2348026029402</a></li>
+            <li>Email: <a href="mailto:chiagoziewisdom763@gmail.com">chiagoziewisdom763@gmail.com</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 WisdomX Global News and Sport. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const apiKey = 'YOUR_NEWS_API_KEY';
+        const sportsNewsUrl = `https://newsapi.org/v2/top-headlines?category=sports&apiKey=${apiKey}`;
+        const celebritiesNewsUrl = `https://newsapi.org/v2/top-headlines?category=entertainment&apiKey=${apiKey}`;
+        const scienceTechNewsUrl = `https://newsapi.org/v2/top-headlines?category=science&apiKey=${apiKey}`;
+        const warNewsUrl = `https://newsapi.org/v2/everything?q=war&apiKey=${apiKey}`;
+        const economicsNewsUrl = `https://newsapi.org/v2/top-headlines?category=business&apiKey=${apiKey}`;
+        const healthNewsUrl = `https://newsapi.org/v2/top-headlines?category=health&apiKey=${apiKey}`;
+        const entertainmentNewsUrl = `https://newsapi.org/v2/top-headlines?category=entertainment&apiKey=${apiKey}`;
+        const politicsNewsUrl = `https://newsapi.org/v2/top-headlines?category=politics&apiKey=${apiKey}`;
+
+        async function fetchNews(url) {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.articles;
+        }
+
+        function renderNews(articles, elementId) {
+            const newsContent = document.getElementById(elementId);
+            newsContent.innerHTML = '';
+            articles.forEach(article => {
+                const articleElement = document.createElement('article');
+                articleElement.innerHTML = `
+                    <h4><a href="${article.url}" target="_blank">${article.title}</a></h4>
+                    <p>${article.description}</p>
+                `;
+                newsContent.appendChild(articleElement);
+            });
+        }
+
+        async function updateNews() {
+            const sportsArticles = await fetchNews(sportsNewsUrl);
+            renderNews(sportsArticles, 'latestNewsContent');
+
+            const celebritiesArticles = await fetchNews(celebritiesNewsUrl);
+            renderNews(celebritiesArticles, 'celebritiesNewsContent');
+
+            const scienceTechArticles = await fetchNews(scienceTechNewsUrl);
+            renderNews(scienceTechArticles, 'scienceTechNewsContent');
+
+            const warArticles = await fetchNews(warNewsUrl);
+            renderNews(warArticles, 'warNewsContent');
+
+            const economicsArticles = await fetchNews(economicsNewsUrl);
+            renderNews(economicsArticles, 'economicsNewsContent');
+
+            const healthArticles = await fetchNews(healthNewsUrl);
+            renderNews(healthArticles, 'healthNewsContent');
+
+            const entertainmentArticles = await fetchNews(entertainmentNewsUrl);
+            renderNews(entertainmentArticles, 'entertainmentNewsContent');
+
+            const politicsArticles = await fetchNews(politicsNewsUrl);
+            renderNews(politicsArticles, 'politicsNewsContent');
+        }
+
+        updateNews();
+        setInterval(updateNews, 86400000); // Update news every day (86400000 milliseconds = 24 hours)
+    </script>
+</body>
+</html>
